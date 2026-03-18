@@ -10,7 +10,6 @@ on:
 
 permissions:
   contents: read
-  packages: write
 
 jobs:
   pack-and-push:
@@ -27,10 +26,10 @@ jobs:
       - name: Pack
         run: dotnet pack ./PluginAbstractions.csproj -c Release -o ./nupkg /p:PackageVersion=${{ inputs.version }}
 
-      - name: Push to GitHub Packages
+      - name: Push to nuget.org
         run: >
           dotnet nuget push "./nupkg/*.nupkg"
-          --api-key "${{ secrets.GITHUB_TOKEN }}"
-          --source "https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json"
+          --api-key "${{ secrets.NUGET_API_KEY }}"
+          --source "https://api.nuget.org/v3/index.json"
           --skip-duplicate
 

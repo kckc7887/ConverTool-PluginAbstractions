@@ -9,3 +9,6 @@
 *.cache
 *.log
 
+# NuGet pack output (generated locally)
+nupkg/
+

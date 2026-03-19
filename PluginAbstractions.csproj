@@ -8,7 +8,7 @@
     <!-- Make this project distributable as a NuGet package (contract for plugins). -->
     <IsPackable>true</IsPackable>
     <PackageId>ConverTool.PluginAbstractions</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.1.2</Version>
     <Authors>ConverTool</Authors>
     <Description>ConverTool plugin contract (manifest, execution context, progress reporter). Host-independent.</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>

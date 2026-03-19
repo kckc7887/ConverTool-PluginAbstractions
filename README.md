@@ -7,5 +7,7 @@
 - `PluginAbstractions.ExecuteContext`
 - `PluginAbstractions.IProgressReporter`
 
-完整的 `manifest.json` 与 `configSchema` 格式说明请参考主仓库的 `docs/plugin-dev.md`。
+完整的 `manifest.json` 与 `configSchema` 格式说明请参考主仓库文档：
+
+- [docs/plugin-dev.md](https://github.com/kckc7887/ConverTool/blob/main/docs/plugin-dev.md)
 

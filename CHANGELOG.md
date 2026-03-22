@@ -3,6 +3,48 @@
 All notable changes to **ConverTool.PluginAbstractions** are documented here.  
 版本号与 **ConverTool Host** 发版对齐；破坏性变更按 SemVer 处理。
 
+## [1.1.0] - 2026-03-22
+
+### 面向插件开发者
+
+- **`TargetFormat` 扩展**：新增可选参数 `InputExtensions`，支持根据输入文件扩展名动态显示目标格式选项。
+  - 用法示例（manifest.json）：
+    ```json
+    {
+      "id": "pdf",
+      "displayNameKey": "plugin/xxx/target/pdf",
+      "inputExtensions": ["ppt", "pptx"]
+    }
+    ```
+  - 当 `InputExtensions` 未指定或为空时，该目标格式对所有支持的输入文件可见。
+  - 当 `InputExtensions` 指定时，仅当输入文件扩展名匹配列表中的任一项时，该目标格式才会在 UI 中显示。
+
+- **配置字段 `visibleForInputExtensions`**：新增配置字段属性，支持根据输入文件扩展名动态显示/隐藏配置项。
+  - 用法示例（manifest.json）：
+    ```json
+    {
+      "key": "Dpi",
+      "type": "Range",
+      "labelKey": "plugin/xxx/field/dpi",
+      "defaultValue": 150,
+      "range": { "min": 72, "max": 300, "step": 1 },
+      "visibleForInputExtensions": ["pdf"]
+    }
+    ```
+  - 当 `visibleForInputExtensions` 未指定或为空时，该配置字段对所有输入文件可见。
+  - 当 `visibleForInputExtensions` 指定时，仅当输入文件扩展名匹配列表中的任一项时，该配置字段才会在 UI 中显示。
+  - 可与 `visibleIf` 同时使用，两者为 AND 关系（都满足才显示）。
+
+- **向后兼容**：`InputExtensions` 和 `visibleForInputExtensions` 均为可选参数，现有插件无需修改即可正常工作。
+
+### 与 Host 的对应关系
+
+- 与 **ConverTool Host v1.1.0** 同号发布；Host 侧已支持：
+  - `RefreshTargetFormatsByVisibility()` 支持 `InputExtensions` 过滤逻辑
+  - 配置字段可见性评估支持 `visibleForInputExtensions` 属性
+
+---
+
 ## [1.0.2] - 2026-03-19
 
 ### 面向插件开发者

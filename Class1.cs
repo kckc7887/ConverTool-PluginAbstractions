@@ -24,7 +24,8 @@ public sealed record I18nDescriptor(
 public sealed record TargetFormat(
     string Id,
     string DisplayNameKey,
-    string? DescriptionKey = null
+    string? DescriptionKey = null,
+    IReadOnlyList<string>? InputExtensions = null
 );
 
 /// <summary>
@@ -75,7 +76,14 @@ public sealed record ConfigField(
     object? DefaultValue = null,
     IReadOnlyList<ConfigOption>? Options = null,
     RangeValidation? Range = null,
-    PathFieldDescriptor? Path = null
+    PathFieldDescriptor? Path = null,
+    VisibleIfCondition? VisibleIf = null,
+    IReadOnlyList<string>? VisibleForInputExtensions = null,
+    /// <summary>
+    /// When non-null and non-empty, Host shows this field only if <see cref="ExecuteContext.TargetFormatId"/>
+    /// equals one of these ids (case-insensitive). Matches JSON manifest key <c>visibleForTargetFormats</c>.
+    /// </summary>
+    IReadOnlyList<string>? VisibleForTargetFormatIds = null
 );
 
 public enum ConfigFieldType
